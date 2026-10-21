@@ -1,3 +1,4 @@
+Basic PersonalProfilePrinter 
 
 public class PersonalProfilePrinter {
     public static void main(String[] args) {
@@ -20,3 +21,133 @@ public class PersonalProfilePrinter {
         System.out.println("Student Status: " + studentStatus);
     }
 }
+
+---------------------------------------------------
+public class TypeSafeShoppingCalculator {
+    public static void main(String[] args) {
+
+        // Declare and initialize variables
+        int quantity = 3;
+        double unitPrice = 49.99;
+        String storeName = "ABC Store";
+
+        // Calculate total cost
+        double totalCost = quantity * unitPrice;
+
+        // Print itemized summary
+        System.out.println("=== SHOPPING SUMMARY ===");
+        System.out.println("Store Name: " + storeName);
+        System.out.println("Quantity: " + quantity);
+        System.out.printf("Unit Price: %.2f%n", unitPrice);
+        System.out.printf("Total Cost: %.2f%n", totalCost);
+
+        // totalCost should not be an int because
+        // the price and total may contain decimal values.
+    }
+}
+
+--------------------------------------------------------------
+package unitcastingconverter;
+import java.util.Scanner;
+
+public class UnitCastingConverter {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        // Read a double value representing centimeters
+        System.out.print("Enter centimeters: ");
+        double centimeters = input.nextDouble();
+
+        // Explicit casting: convert centimeters to whole meters
+        int meters = (int) (centimeters / 100);
+
+        // Calculate the remaining centimeters
+        double remainingCentimeters = centimeters - (meters * 100);
+
+        System.out.println("Whole meters: " + meters);
+        System.out.println("Remaining centimeters: " + remainingCentimeters);
+
+        // Implicit widening: int to double
+        int number = 25;
+        double widenedNumber = number; // No cast needed because double can store int values
+
+        System.out.println("Implicit widening (int to double): " + widenedNumber);
+
+        // Explicit narrowing: double to int
+        double decimalNumber = 12.75;
+        int narrowedNumber = (int) decimalNumber;
+        // The decimal part (.75) is lost during narrowing
+
+        System.out.println("Explicit narrowing (double to int): " + narrowedNumber);
+
+        input.close();
+    }
+}
+--------------------------------------------------------
+
+public class OverflowSharingInvestigation {
+    public static void main(String[] args) {
+
+        // PART 1: Primitive Overflow Behavior
+        System.out.println("=== PRIMITIVE OVERFLOW ===");
+
+        byte number = 127;
+        System.out.println("Before increment: " + number);
+
+        number++;
+        System.out.println("After increment: " + number);
+        // A byte has a maximum value of 127.
+        // Incrementing 127 wraps around to -128.
+
+        // PART 2: String Comparison
+        System.out.println("\n=== STRING COMPARISON ===");
+
+        String str1 = new String("Hello");
+        String str2 = new String("Hello");
+        String str3 = "Hello";
+
+        // Compare str1 and str2
+        System.out.println("str1 == str2: " + (str1 == str2));
+        // False because new String() creates two different objects.
+
+        System.out.println("str1.equals(str2): " + str1.equals(str2));
+        // True because both strings contain the same text.
+
+        // Compare str1 and str3
+        System.out.println("str1 == str3: " + (str1 == str3));
+        // False because str1 refers to a new object, while str3
+        // refers to the string literal in the string pool.
+
+        System.out.println("str1.equals(str3): " + str1.equals(str3));
+        // True because both strings contain the text "Hello".
+
+        // Compare str2 and str3
+        System.out.println("str2 == str3: " + (str2 == str3));
+        // False because str2 refers to a new object and str3
+        // refers to the string literal in the string pool.
+
+        System.out.println("str2.equals(str3): " + str2.equals(str3));
+        // True because both strings contain the same text.
+
+        // PART 3: Array Reference Sharing
+        System.out.println("\n=== ARRAY REFERENCE SHARING ===");
+
+        int[] originalArray = {10, 20, 30};
+        int[] sharedArray = originalArray;
+
+        System.out.println("Before modification:");
+        System.out.println("Original array first element: " + originalArray[0]);
+        System.out.println("Shared array first element: " + sharedArray[0]);
+
+        sharedArray[0] = 99;
+
+        System.out.println("\nAfter modification:");
+        System.out.println("Original array first element: " + originalArray[0]);
+        System.out.println("Shared array first element: " + sharedArray[0]);
+
+        // Both variables refer to the same array object.
+        // Changing the array through sharedArray is visible
+        // when accessing it through originalArray.
+    }
+}
+
