@@ -1,0 +1,70 @@
+
+public class LoginValidation {
+    public static void main(String[] args) {
+
+        // Correct login information
+        String correctUsername = "student";
+        String correctPassword = "pogiako123";
+        boolean accountLocked = false;
+
+        // Test 1: Wrong username
+        String username = "wrongUser";
+        String password = "pogiako123";
+        boolean locked = false;
+
+        System.out.println("TEST 1: Wrong Username");
+        if (username.equals(correctUsername)) {
+            if (password.equals(correctPassword)) {
+                if (!locked) {
+                    System.out.println("Login successful!");
+                } else {
+                    System.out.println("Login failed: Account is locked.");
+                }
+            } else {
+                System.out.println("Login failed: Incorrect password.");
+            }
+        } else {
+            System.out.println("Login failed: Incorrect username.");
+        }
+
+        // Test 2: Wrong password
+        username = "student";
+        password = "wrongPass";
+        locked = false;
+
+        System.out.println("\nTEST 2: Wrong Password");
+        if (username.equals(correctUsername)) {
+            if (password.equals(correctPassword)) {
+                if (!locked) {
+                    System.out.println("Login successful!");
+                } else {
+                    System.out.println("Login failed: Account is locked.");
+                }
+            } else {
+                System.out.println("Login failed: Incorrect password.");
+            }
+        } else {
+            System.out.println("Login failed: Incorrect username.");
+        }
+
+        // Test 3: Account is locked
+        username = "student";
+        password = "pogiako123";
+        locked = true;
+
+        System.out.println("\nTEST 3: Locked Account");
+        if (username.equals(correctUsername)) {
+            if (password.equals(correctPassword)) {
+                if (!locked) {
+                    System.out.println("Login successful!");
+                } else {
+                    System.out.println("Login failed: Account is locked.");
+                }
+            } else {
+                System.out.println("Login failed: Incorrect password.");
+            }
+        } else {
+            System.out.println("Login failed: Incorrect username.");
+        }
+    }
+}
