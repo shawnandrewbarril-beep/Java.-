@@ -1,0 +1,23 @@
+
+public class ScoreClassification {
+    public static void main(String[] args) {
+
+        // Test 1: Passing score
+        int score = 85;
+
+        if (score >= 60) {
+            System.out.println("Score: " + score + " - PASSED");
+        } else {
+            System.out.println("Score: " + score + " - FAILED");
+        }
+
+        // Test 2: Failing score (change the variable value)
+        score = 45;
+
+        if (score >= 60) {
+            System.out.println("Score: " + score + " - PASSED");
+        } else {
+            System.out.println("Score: " + score + " - FAILED");
+        }
+    }
+}
