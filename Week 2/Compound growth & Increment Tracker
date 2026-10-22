@@ -1,0 +1,32 @@
+
+public class BalanceTracker {
+    public static void main(String[] args) {
+
+        // Balance growth over time
+        double balance = 1000.0;
+
+        System.out.println("Initial Balance: " + balance);
+
+        balance += 500.0;
+        System.out.println("After adding 500: " + balance);
+
+        balance *= 1.10;
+        System.out.println("After 10% growth: " + balance);
+
+        balance += 200.0;
+        System.out.println("After adding 200: " + balance);
+
+        // Postfix and Prefix increment
+        int count = 5;
+
+        System.out.println("\nInitial Count: " + count);
+
+        // Postfix (count++): prints the old value first, then increments count.
+        System.out.println("Postfix count++: " + count++);
+        System.out.println("Count after postfix: " + count);
+
+        // Prefix (++count): increments count first, then prints the new value.
+        System.out.println("Prefix ++count: " + ++count);
+        System.out.println("Count after prefix: " + count);
+    }
+}
