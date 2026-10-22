@@ -1,0 +1,38 @@
+
+public class StudentEligibility {
+    public static void main(String[] args) {
+
+        // Declare student information
+        double averageGrade = 85;
+        int absences = 2;
+
+        // Check eligibility using relational and logical operators
+        boolean passes = ((averageGrade >= 75) && (absences <= 3))
+                         || (averageGrade >= 90);
+
+        // Display student information
+        System.out.println("Average Grade: " + averageGrade);
+        System.out.println("Number of Absences: " + absences);
+
+        // Print PASS or FAIL with reasoning
+        if (passes) {
+            System.out.println("Result: PASS");
+
+            if ((averageGrade >= 75) && (absences <= 3)) {
+                System.out.println(
+                    "Reason: Grade is at least 75 and absences are 3 or fewer."
+                );
+            } else {
+                System.out.println(
+                    "Reason: Grade is at least 90, regardless of absences."
+                );
+            }
+        } else {
+            System.out.println("Result: FAIL");
+            System.out.println(
+                "Reason: Grade is below 90 and does not meet both "
+                + "the minimum grade of 75 and maximum absences of 3."
+            );
+        }
+    }
+}
