@@ -1,0 +1,27 @@
+
+public class TrickyExpressions {
+    public static void main(String[] args) {
+
+        int a = 5;
+        int b = 3;
+        int count = 4;
+
+        // Expression 1
+        // Predicted result: true
+        boolean result1 = (a + b * 2 > 10) && (count++ == 4);
+        System.out.println("Expression 1 actual result: " + result1);
+        System.out.println("Count after Expression 1: " + count);
+
+        // Expression 2
+        // Predicted result: false
+        boolean result2 = (a * 2 == 10) && (++count < 6);
+        System.out.println("Expression 2 actual result: " + result2);
+        System.out.println("Count after Expression 2: " + count);
+
+        // Expression 3
+        // Predicted result: true
+        boolean result3 = (a++ > 5) || (b + 2 == 5);
+        System.out.println("Expression 3 actual result: " + result3);
+        System.out.println("a after Expression 3: " + a);
+    }
+}
