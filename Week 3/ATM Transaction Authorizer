@@ -1,0 +1,112 @@
+
+public class AuthorizationSystem {
+    public static void main(String[] args) {
+
+        // Account information
+        String correctUsername = "student";
+        int correctPIN = 1234;
+        double balance = 12000.00;
+
+        // Transaction information
+        String username = "student";
+        int pin = 1234;
+        double withdrawal = 3000.00;
+
+        double dailyWithdrawn = 0.00;
+        double dailyLimit = 0.00;
+        double feePercentage = 0.00;
+        double fee;
+        double totalDeduction;
+        String tier = "";
+        String denialReason = "";
+
+        // Stage 1: Validate username and PIN using nested if
+        if (username.equals(correctUsername)) {
+            if (pin == correctPIN) {
+
+                // Stage 2: Determine account tier using else-if ladder
+                if (balance >= 50000) {
+                    tier = "Platinum";
+                    dailyLimit = 20000.00;
+                } else if (balance >= 20000) {
+                    tier = "Gold";
+                    dailyLimit = 10000.00;
+                } else if (balance >= 5000) {
+                    tier = "Silver";
+                    dailyLimit = 5000.00;
+                } else {
+                    tier = "Bronze";
+                    dailyLimit = 1000.00;
+                }
+
+                // Stage 3: Select transaction fee using switch
+                switch (tier) {
+                    case "Bronze":
+                        feePercentage = 0.02;
+                        break;
+                    case "Silver":
+                        feePercentage = 0.015;
+                        break;
+                    case "Gold":
+                        feePercentage = 0.01;
+                        break;
+                    case "Platinum":
+                        feePercentage = 0.005;
+                        break;
+                    default:
+                        denialReason = "Invalid account tier.";
+                }
+
+                // Calculate fee and total deduction
+                fee = withdrawal * feePercentage;
+                totalDeduction = withdrawal + fee;
+
+                // Stage 4: Nested withdrawal authorization
+                if (denialReason.isEmpty()) {
+                    if (withdrawal > 0) {
+                        if (totalDeduction <= balance) {
+                            if (dailyWithdrawn + withdrawal
+                                    <= dailyLimit) {
+
+                                // Final authorization
+                                System.out.println("Status: APPROVED");
+                                System.out.println("Account Tier: " + tier);
+                                System.out.println("Withdrawal: PHP "
+                                        + withdrawal);
+                                System.out.println("Transaction Fee: PHP "
+                                        + fee);
+                                System.out.println("Total Deduction: PHP "
+                                        + totalDeduction);
+                                System.out.println("Remaining Balance: PHP "
+                                        + (balance - totalDeduction));
+
+                            } else {
+                                denialReason =
+                                    "Daily withdrawal limit exceeded.";
+                            }
+                        } else {
+                            denialReason =
+                                "Insufficient balance to cover withdrawal and fee.";
+                        }
+                    } else {
+                        denialReason =
+                            "Withdrawal amount must be greater than zero.";
+                    }
+                }
+
+                // Print denial reason if authorization failed
+                if (!denialReason.isEmpty()) {
+                    System.out.println("Status: DENIED");
+                    System.out.println("Reason: " + denialReason);
+                }
+
+            } else {
+                System.out.println("Status: DENIED");
+                System.out.println("Reason: Incorrect PIN.");
+            }
+        } else {
+            System.out.println("Status: DENIED");
+            System.out.println("Reason: Incorrect username.");
+        }
+    }
+}
