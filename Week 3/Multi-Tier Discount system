@@ -1,0 +1,36 @@
+
+public class DiscountCalculator {
+    public static void main(String[] args) {
+
+        // Declare purchase amount
+        double purchaseAmount = 6000.00;
+        double discount;
+        String discountTier;
+
+        // Assign discount based on purchase amount
+        if (purchaseAmount >= 5000) {
+            discount = 0.20;
+            discountTier = "Gold - 20% Discount";
+        } else if (purchaseAmount >= 3000) {
+            discount = 0.15;
+            discountTier = "Silver - 15% Discount";
+        } else if (purchaseAmount >= 1000) {
+            discount = 0.10;
+            discountTier = "Bronze - 10% Discount";
+        } else if (purchaseAmount >= 500) {
+            discount = 0.05;
+            discountTier = "Basic - 5% Discount";
+        } else {
+            discount = 0.0;
+            discountTier = "No Discount";
+        }
+
+        // Calculate final price
+        double finalPrice = purchaseAmount - (purchaseAmount * discount);
+
+        // Display results
+        System.out.println("Purchase Amount: PHP " + purchaseAmount);
+        System.out.println("Discount Tier: " + discountTier);
+        System.out.println("Final Discounted Price: PHP " + finalPrice);
+    }
+}
