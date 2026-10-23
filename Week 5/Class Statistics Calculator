@@ -1,0 +1,36 @@
+
+public class StudentScores {
+    public static void main(String[] args) {
+
+        // Declare an array of 8 student scores
+        int[] scores = {85, 90, 78, 92, 88, 75, 95, 80};
+
+        int sum = 0;
+        int highest = scores[0];
+        int lowest = scores[0];
+
+        // Calculate sum, highest, and lowest using a loop
+        for (int i = 0; i < scores.length; i++) {
+            sum += scores[i];
+
+            if (scores[i] > highest) {
+                highest = scores[i];
+            }
+
+            if (scores[i] < lowest) {
+                lowest = scores[i];
+            }
+        }
+
+        // Calculate average
+        double average = (double) sum / scores.length;
+
+        // Display the results
+        System.out.println("=== STUDENT SCORE STATISTICS ===");
+        System.out.println("Total Students: " + scores.length);
+        System.out.println("Sum of Scores: " + sum);
+        System.out.println("Average Score: " + average);
+        System.out.println("Highest Score: " + highest);
+        System.out.println("Lowest Score: " + lowest);
+    }
+}
