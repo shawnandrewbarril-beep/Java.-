@@ -1,0 +1,13 @@
+package com.mycompany.control_flow_part_2;
+
+public class Control_Flow_Part_2_Basic {
+    public static void main(String[] args) {
+        System.out.println("--- NUMBER & SQUARE PRINTER ---");
+        
+        // Using a for loop counting from 1 to 20
+        for (int i = 1; i <= 20; i++) {
+            int square = i * i;
+            System.out.println("Number: " + i + " | Square: " + square);
+        }
+    }
+}
