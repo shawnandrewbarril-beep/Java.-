@@ -1,3 +1,5 @@
+package runningtotal;
+
 
 import java.util.Scanner;
 
