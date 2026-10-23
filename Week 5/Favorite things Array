@@ -1,0 +1,27 @@
+package personalfavorites;
+
+
+
+public class PersonalFavorites {
+    public static void main(String[] args) {
+
+        // Declare and initialize an array of favorite things
+        String[] favorites = {
+            "Music",
+            "Gaming",
+            "Gadget",
+            "Food",
+            "Traveling"
+        };
+
+        // Print each favorite with a number
+        System.out.println("=== MY FAVORITE THINGS ===");
+
+        for (int i = 0; i < favorites.length; i++) {
+            System.out.println((i + 1) + ". " + favorites[i]);
+        }
+
+        // Print the total length of the array
+        System.out.println("Total Favorites: " + favorites.length);
+    }
+}
