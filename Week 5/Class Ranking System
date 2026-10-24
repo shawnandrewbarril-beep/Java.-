@@ -1,0 +1,22 @@
+
+package classrankingsystem;
+
+public class Student {
+    String name;
+    int[] quizzes;
+    double average;
+
+    public Student(String name, int[] quizzes) {
+        this.name = name;
+        this.quizzes = quizzes;
+
+        int sum = 0;
+
+        // Calculate the student's average
+        for (int i = 0; i < quizzes.length; i++) {
+            sum += quizzes[i];
+        }
+
+        average = (double) sum / quizzes.length;
+    }
+}
