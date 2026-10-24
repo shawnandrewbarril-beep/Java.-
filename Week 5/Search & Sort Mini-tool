@@ -1,0 +1,46 @@
+
+import java.util.Arrays;
+
+public class SearchAndSort {
+    public static void main(String[] args) {
+
+        // Declare the original array of student scores
+        int[] scores = {85, 90, 78, 92, 88, 75, 95, 80};
+
+        // Target score to search for
+        int target = 92;
+        int index = -1;
+
+        // Linear search for the target score
+        for (int i = 0; i < scores.length; i++) {
+            if (scores[i] == target) {
+                index = i;
+                break;
+            }
+        }
+
+        // Display the search result
+        System.out.println("=== LINEAR SEARCH ===");
+
+        if (index != -1) {
+            System.out.println("Target Score: " + target);
+            System.out.println("Score found at index: " + index);
+        } else {
+            System.out.println("Target Score: " + target);
+            System.out.println("Score not found.");
+        }
+
+        // Create a copy so the original array stays unchanged.
+        // This matters because other operations may depend on the
+        // original order of the student scores.
+        int[] sortedScores = Arrays.copyOf(scores, scores.length);
+
+        // Sort the copied array
+        Arrays.sort(sortedScores);
+
+        // Print both arrays
+        System.out.println("\n=== ORIGINAL AND SORTED ARRAYS ===");
+        System.out.println("Original Array: " + Arrays.toString(scores));
+        System.out.println("Sorted Array: " + Arrays.toString(sortedScores));
+    }
+}
