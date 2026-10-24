@@ -1,22 +1,95 @@
 
 package classrankingsystem;
 
-public class Student {
-    String name;
-    int[] quizzes;
-    double average;
+public class ClassRankingSystem {
+    public static void main(String[] args) {
 
-    public Student(String name, int[] quizzes) {
-        this.name = name;
-        this.quizzes = quizzes;
+        // 2D array containing student names and quiz scores
+        String[] names = {
+            "Alex", "Shawn", "Carlo", "David", "Ella", "Faith"
+        };
 
-        int sum = 0;
+        int[][] quizData = {
+            {90, 85, 88, 92},
+            {80, 82, 85, 83},
+            {95, 90, 93, 92},
+            {80, 82, 85, 83},
+            {88, 90, 87, 91},
+            {75, 78, 80, 77}
+        };
 
-        // Calculate the student's average
-        for (int i = 0; i < quizzes.length; i++) {
-            sum += quizzes[i];
+        // Create an array of Student objects
+        Student[] students = new Student[names.length];
+
+        for (int i = 0; i < students.length; i++) {
+            students[i] = new Student(names[i], quizData[i]);
         }
 
-        average = (double) sum / quizzes.length;
+        // Sort students by average using our own bubble sort
+        for (int i = 0; i < students.length - 1; i++) {
+            for (int j = 0; j < students.length - 1 - i; j++) {
+
+                if (students[j].average < students[j + 1].average) {
+                    Student temp = students[j];
+                    students[j] = students[j + 1];
+                    students[j + 1] = temp;
+                }
+            }
+        }
+
+        // Display the leaderboard
+        System.out.println("==============================================");
+        System.out.println("             CLASS RANKING SYSTEM");
+        System.out.println("==============================================");
+        System.out.printf("%-8s %-12s %-12s%n",
+                "RANK", "NAME", "AVERAGE");
+        System.out.println("----------------------------------------------");
+
+        int rank = 1;
+
+        for (int i = 0; i < students.length; i++) {
+
+            // Students with equal averages receive the same rank
+            if (i > 0 &&
+                students[i].average != students[i - 1].average) {
+                rank = i + 1;
+            }
+
+            System.out.printf("%-8d %-12s %-12.2f%n",
+                    rank, students[i].name, students[i].average);
+        }
+
+        System.out.println("==============================================");
+
+        // Linear search to find a student's rank by name
+        String searchName = "Brian";
+        int foundIndex = -1;
+
+        for (int i = 0; i < students.length; i++) {
+            if (students[i].name.equalsIgnoreCase(searchName)) {
+                foundIndex = i;
+                break;
+            }
+        }
+
+        if (foundIndex != -1) {
+
+            // Calculate rank based on the number of higher averages
+            int studentRank = 1;
+
+            for (int i = 0; i < students.length; i++) {
+                if (students[i].average > students[foundIndex].average) {
+                    studentRank++;
+                }
+            }
+
+            System.out.println("\nSEARCH RESULT");
+            System.out.println("Student Name: " + students[foundIndex].name);
+            System.out.printf("Average: %.2f%n", students[foundIndex].average);
+            System.out.println("Rank: " + studentRank);
+
+        } else {
+            System.out.println("\nStudent not found: " + searchName);
+        }
     }
 }
